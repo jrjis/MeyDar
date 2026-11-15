@@ -1,6 +1,6 @@
 // می‌دار — service worker
 // هر بار فایل‌های برنامه را عوض کردی، عدد نسخه را بالا ببر تا کش قدیمی پاک شود.
-const VERSION = 'meydar-v1';
+const VERSION = 'meydar-v2';
 const FILES = ["./", "index.html", "manifest.webmanifest", "icons/apple-touch-icon.png", "icons/favicon-48.png", "icons/icon-192.png", "icons/icon-512.png", "icons/maskable-512.png", "fonts/noto-naskh-arabic-arabic-500-normal.woff2", "fonts/vazirmatn-arabic-400-normal.woff2", "fonts/vazirmatn-arabic-600-normal.woff2", "fonts/vazirmatn-arabic-800-normal.woff2", "fonts/vazirmatn-latin-400-normal.woff2", "fonts/vazirmatn-latin-600-normal.woff2", "fonts/vazirmatn-latin-800-normal.woff2"];
 
 self.addEventListener('install', (e) => {
