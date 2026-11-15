@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f2f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#150b1a" media="(prefers-color-scheme: dark)">
+<meta name="description" content="می‌دار؛ همراه دورهمی برای مدیریت نوشیدن و حفظ حال مجلس">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="می‌دار">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>می‌دار</title>
+<style>
+@font-face{font-family:Vazirmatn;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/vazirmatn-arabic-400-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:Vazirmatn;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/vazirmatn-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Vazirmatn;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/vazirmatn-arabic-600-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:Vazirmatn;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/vazirmatn-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Vazirmatn;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/vazirmatn-arabic-800-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+@font-face{font-family:Vazirmatn;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/vazirmatn-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Noto Naskh Arabic';font-style:normal;font-display:swap;font-weight:500;src:url(fonts/noto-naskh-arabic-arabic-500-normal.woff2) format('woff2');unicode-range:U+0600-06FF,U+0750-077F,U+0870-088E,U+0890-0891,U+0897-08E1,U+08E3-08FF,U+200C-200E,U+2010-2011,U+204F,U+2E41,U+FB50-FDFF,U+FE70-FE74,U+FE76-FEFC}
+:root{--bg:#f7f2f5;--s:#fff;--t:#2b1631;--m:#6e5a76;--ac:#b0243b;--onac:#fff;--g:#8a5d0a;--w:#0b6f8f;--l0:#23844f;--l1:#a87800;--l2:#c4570f;--l3:#c62839;--ln:#e6dbe4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#150b1a;--s:#241430;--t:#f3e8dc;--m:#b7a3bd;--ac:#ff6b7d;--onac:#2a0a12;--g:#f2c166;--w:#6fd0ec;--l0:#4fcf8e;--l1:#f2c166;--l2:#ff9a52;--l3:#ff5468;--ln:#3a2447}}
+:root[data-theme="dark"]{--bg:#150b1a;--s:#241430;--t:#f3e8dc;--m:#b7a3bd;--ac:#ff6b7d;--onac:#2a0a12;--g:#f2c166;--w:#6fd0ec;--l0:#4fcf8e;--l1:#f2c166;--l2:#ff9a52;--l3:#ff5468;--ln:#3a2447}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);color-scheme:light dark}
+:root[data-theme="dark"]{color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--t);font:400 17px/1.7 Vazirmatn,Tahoma,sans-serif;min-height:100vh;-webkit-tap-highlight-color:transparent}
+#app{max-width:480px;margin:0 auto;padding:18px 18px 110px}
+h1{font-size:42px;font-weight:800;margin:8px 0 0;line-height:1.2}
+h2{font-size:19px;margin:22px 0 8px;font-weight:600}
+p{margin:6px 0}
+.m{color:var(--m);font-size:15px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible,a:focus-visible{outline:3px solid var(--g);outline-offset:2px}
+.big{width:100%;min-height:70px;border-radius:20px;background:var(--ac);color:var(--onac);font-size:22px;font-weight:800;line-height:1.3}
+.big small{display:block;font-size:13px;font-weight:400;opacity:.85}
+.big:active{transform:scale(.98)}
+.card{background:var(--s);border-radius:20px;padding:16px;margin-top:14px}
+.opt{display:block;width:100%;text-align:right;background:var(--s);border:2px solid transparent;border-radius:16px;padding:10px 16px;margin-top:10px;min-height:60px}
+.opt.on{border-color:var(--g)}
+.opt b{display:block;font-weight:600}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.chip{padding:8px 16px;border-radius:99px;background:var(--s);min-height:44px;font-size:15px;border:2px solid transparent}
+.chip.on{border-color:var(--g);color:var(--g)}
+.mini{display:flex;align-items:center;gap:14px;padding:6px 0}
+.mini span{flex:1}
+.mini button{width:48px;height:48px;border-radius:50%;background:var(--bg);font-size:24px}
+.mini b{min-width:34px;text-align:center;font-size:22px;font-weight:800}
+.gl{display:grid;place-items:center;margin-top:6px}
+.gl svg{width:150px;height:auto;overflow:visible}
+.tm{text-align:center;font-weight:600;border-radius:14px;padding:8px 12px;background:var(--s);margin-top:6px}
+.tm.go{color:var(--l0)}.tm.wt{color:var(--g)}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 4px}
+.meter i{height:10px;border-radius:5px;background:var(--ln)}
+.lvl{text-align:center;font-weight:600;color:var(--lc)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stats b{display:block;font-size:22px;font-weight:800}
+.poem{font-family:"Noto Naskh Arabic",Vazirmatn,serif;font-size:22px;line-height:2.1;text-align:center;min-height:130px;display:grid;place-content:center}
+.poem small{font:400 14px Vazirmatn,sans-serif;color:var(--m)}
+.poem.new{animation:rise .5s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.poem.new{animation:none}}
+.water{display:flex;align-items:center;gap:12px;background:var(--w);color:#04222c;border-radius:18px;padding:12px 16px;margin-top:14px;font-weight:600}
+.water p{flex:1;margin:0;line-height:1.6}
+.water button{background:#04222c;color:#fff;border-radius:12px;padding:8px 14px;min-height:44px}
+.ghost{padding:10px 14px;min-height:44px;color:var(--m);font-size:15px}
+.sub{display:flex;gap:8px;margin-top:10px}
+.sub button{flex:1;min-height:52px;border-radius:16px;background:var(--s);font-size:15px}
+.tabs{position:fixed;inset:auto 0 0 0;display:flex;background:var(--s);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.tabs button{flex:1;min-height:60px;font-size:15px;color:var(--m)}
+.tabs button.on{color:var(--g);font-weight:800}
+.ov{position:fixed;inset:0;z-index:20;display:grid;place-content:center;gap:16px;text-align:center;padding:28px;background:var(--lc);color:#fff}
+.ov h2{font-size:34px;margin:0;font-weight:800}
+.ov p{font-size:19px}
+.ov button{background:#fff;color:#2b1631;border-radius:16px;min-height:60px;padding:0 28px;font-weight:800;font-size:19px}
+.link{display:flex;justify-content:space-between;align-items:center;padding:12px 4px;border-bottom:1px solid var(--ln);color:var(--t);text-decoration:none;min-height:52px}
+.link span{color:var(--g);font-size:14px}
+.ck{display:flex;gap:12px;align-items:center}
+.ck>div{flex:1}
+.ck b{font-weight:600}
+.tag{font-size:14px;padding:2px 10px;border-radius:99px;background:var(--bg);color:var(--g);white-space:nowrap}
+.ck button{min-height:48px;padding:0 14px;border-radius:12px;background:var(--bg);font-size:14px}
+.rnd{font-size:64px;font-weight:800;text-align:center;line-height:1.2}
+.tabs button{font-size:13px}.dtb{flex:0 0 auto;display:grid;place-items:center;gap:2px;width:88px;padding:8px 4px;border-radius:16px;background:var(--s);border:2px solid transparent;font-size:13px}.dtb.on{border-color:var(--g)}a.big{display:grid;place-items:center;text-decoration:none;margin-top:10px}.ov .big{background:#fff;color:#2b1631;min-height:56px;font-size:18px}input{width:100%;min-height:52px;border-radius:12px;border:2px solid var(--ln);background:var(--bg);color:var(--t);padding:0 14px;font:inherit;margin:6px 0}
+.bar{height:8px;border-radius:4px;background:var(--ln);margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--g);transition:width 1s linear}
+input[type=range]{padding:0;min-height:44px;accent-color:var(--g);border:0;background:none}input.nm{min-height:44px;font-weight:600;margin:0;flex:1;width:auto}.pr{display:flex;gap:10px;align-items:center;justify-content:space-between}a.chip{display:inline-flex;align-items:center;text-decoration:none;color:var(--t)}
+.note{font-size:13px;color:var(--m);margin-top:22px;line-height:1.8}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+var KEY='saqi_v2',$=function(s){return document.querySelector(s)};
+var fa=function(n){if(typeof n==='string')return n.replace(/\d/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'[d]});return Number(n).toLocaleString('fa-IR',{maximumFractionDigits:1})};
+// سقف واحد استاندارد برای هر نفر [زرد، نارنجی، قرمز] و سرعت در ساعت
+var F=[2,3,4],M=[3,4,5],PC=[1.1,1.5,2];
+var T={
+ classic:{n:'کلاسیک',d:'ادب و ساقی‌نامه',water:'ای ساقی‌دل، پیش از جام بعد، آبی بر لب بنه.',l:['','آهسته‌تر ای یاران؛ شب بلند است و جام‌ها بسیار.','ساقی می‌گوید: جام را زمین بگذارید، آب بنوشید و لقمه‌ای بخورید.','بس است امشب. ساقی جام‌ها را برمی‌چیند. رانندگی نکنید.']},
+ playful:{n:'شوخ',d:'خودمونی و کوبنده',water:'آب! همین الان. کبدتون سفارش کرده.',l:['','سرعتتون داره از ساقی هم جلو می‌زنه. یواش‌تر!','نارنجی شدیم. یه لیوان آب بخورید، یه چیزی هم بخورید، بعد ادامه.','قرمز! ساقی رسماً اعتصاب کرد. پیک‌ها تعطیل. رانندگی هم ممنوع.']},
+ mixed:{n:'ترکیبی',d:'شعر کلاسیک، هشدار صریح',water:'یک لیوان آب بخورید. شعر و شب هنوز ادامه دارد.',l:['','سرعت بالا رفته. آهسته‌تر بنوشید.','هشدار: آب و غذا بخورید و چند دقیقه صبر کنید.','توقف. دیگر ننوشید و هیچ‌کس رانندگی نکند.']}
+};
+var TS={
+ classic:{water:'ای یار، پیش از جام بعد، آبی بر لب بنه.',l:['','آهسته‌تر، شب بلند است.','جام را زمین بگذار، آب بنوش و لقمه‌ای بخور. تنها هستی و کسی حواسش به تو نیست.','بس است امشب. جام را کنار بگذار و آدم امنت را در جریان بگذار. رانندگی نکن.']},
+ playful:{water:'آب! همین الان. کبدت سفارش کرده.',l:['','سرعتت داره بالا می‌ره. یواش‌تر، حریفی که نداری!','نارنجی شدی. آب بخور، یه چیزی بخور و چند دقیقه صبر کن.','قرمز! ساقی اعتصاب کرد. بس کن و به آدم امنت پیام بده.']},
+ mixed:{water:'یک لیوان آب بخور. شب هنوز ادامه دارد.',l:['','سرعت بالا رفته. آهسته‌تر بنوش.','هشدار: تنها هستی و کسی متوجه حالت نمی‌شود. آب و غذا بخور و صبر کن.','توقف. ننوش، آدم امنت را در جریان بگذار و رانندگی نکن.']}
+};
+function tt(){return n()===1?TS[S.tone]:T[S.tone]}
+var V=[['آرام و صمیمی','گپ و موسیقی ملایم'],['شاد و پرانرژی','خنده و بازی'],['رقص و شلوغ','موسیقی بلند']];
+var LV=[{n:'آرام و خوش',c:'--l0'},{n:'سرعت بالاست',c:'--l1'},{n:'هشدار',c:'--l2'},{n:'توقف',c:'--l3'}];
+// نام، حجم (ml)، درصد الکل
+var D=[['پیک ۳۰ml',30,40],['پیک ۴۰ml',40,40],['پیک ۵۰ml',50,40],['شراب ۱۵۰ml',150,12],['آبجو ۳۳۰ml',330,5]];
+// نام، دستور، توضیح، واحد استاندارد (تقریبی، ۱۴ گرم الکل = ۱ واحد)
+var CK=[
+['اسپریتز سبک','۹۰ml شراب، سودا، یخ، برش لیمو',0.6],
+['موهیتو','۴۰ml مشروب سفید، لیمو، نعنا، شکر، سودا',0.9],
+['ماسکو می‌ول','۴۰ml ودکا، آبلیمو، جینجر‌بیر، یخ',0.9],
+['شَندی','۱۶۵ml آبجو و ۱۶۵ml لیموناد',0.5],
+['سکنجبین سودا','سکنجبین، سودا، یخ، نعنا. بدون الکل',0],
+['نعنا و آبلیمو','آبلیمو، نعنا، عسل، آب گازدار. بدون الکل',0]
+];
+var GM=[
+['مشاعره','هر نفر با حرف آخر بیت قبلی شروع می‌کند. با دکمهٔ «حرف شروع» بازی را راه بیندازید.'],
+['دو حقیقت و یک دروغ','هر نفر سه جمله دربارهٔ خودش می‌گوید؛ بقیه دروغ را پیدا می‌کنند.'],
+['کلمهٔ ممنوعه','توضیح یک کلمه بدون گفتن ۵ کلمهٔ ممنوع.'],
+['پانتومیم','فیلم، شغل یا ضرب‌المثل را فقط با حرکت نشان بده.'],
+['من هرگز…','هر کس کاری را که نکرده می‌گوید؛ هر که کرده جریمهٔ غیرالکلی می‌گیرد.']
+];
+var LET=['ا','ب','پ','ت','ج','چ','د','ر','ز','س','ش','ک','گ','ل','م','ن','و','ه','ی'];
+var PEN=['یک لیوان آب بنوش','یک خاطره بگو','۱۰ ثانیه برقص','یک بیت شعر بخوان','از یک نفر تعریف کن','یک ادا دربیاور'];
+// اشعار: قبل از انتشار با گنجور تطبیق داده شود
+var P=[
+['الا یا ایها الساقی ادر کأساً و ناولها','که عشق آسان نمود اول ولی افتاد مشکل‌ها','حافظ'],
+['ساقی بیا که یار ز رخ پرده برگرفت','کار چراغ خلوتیان باز درگرفت','حافظ'],
+['بیا تا گل برافشانیم و می در ساغر اندازیم','فلک را سقف بشکافیم و طرحی نو دراندازیم','حافظ'],
+['دوش دیدم که ملایک در میخانه زدند','گل آدم بسرشتند و به پیمانه زدند','حافظ'],
+['ساقی حدیث سرو و گل و لاله می‌رود','وین بحث با ثلاثهٔ غساله می‌رود','حافظ'],
+['صلاح کار کجا و من خراب کجا','ببین تفاوت ره از کجاست تا به کجا','حافظ'],
+['آسایش دو گیتی تفسیر این دو حرف است','با دوستان مروت، با دشمنان مدارا','حافظ'],
+['این کوزه چو من عاشق زاری بوده است','در بند سر زلف نگاری بوده است','منسوب به خیام'],
+['پر کن قدح باده که معلوم نیست','کاین دم که فرو برم برآرم یا نه','منسوب به خیام']
+];
+var MU=[
+['آرام و دل‌نشین',['محمدرضا شجریان','علیرضا قربانی','همایون شجریان','محسن چاووشی','سالار عقیلی']],
+['شاد',['گوگوش','ابی','اندی','سیاوش قمیشی','شهرام شب‌پره']],
+['نوستالژی و رقص',['داریوش','معین','هایده','مهستی','فرهاد']]
+];
+var S=null,tab='night',poem=null,fresh=false,alertLv=0,alertMsg='',mood=0,pick=null,arm=false,letter=null,pen=null,
+ setup={f:2,m:2,u:0,vibe:0,tone:'mixed'};
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+var SP={name:'',phone:'',m:0};try{SP=Object.assign(SP,JSON.parse(localStorage.getItem('saqi_sp')))}catch(e){}
+if(S)mood=S.vibe;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function n(){return Math.max(1,S.f+S.m+S.u)}
+function lim(i){return (S.f*F[i]+S.m*M[i]+S.u*F[i])/n()}
+function sdp(){var d=D[S.dt];return d[1]*d[2]/100*0.789/14}
+function tf(ms){var s=Math.floor(ms/1000),m=Math.floor(s/60);return fa(String(m))+':'+fa(('0'+(s%60)).slice(-2))}
+function tmHTML(){var now=Date.now();if(!S.lr||!S.next)return '<div class="tm wt">اول چیزی بخورید، بعد دور اول</div>';var tot=S.next-S.lr,el=now-S.lr,lb=n()===1?'پیک بعدی':'دور بعد';if(el>=tot)return '<div class="tm go">زمان '+lb+' رسیده</div>';return '<div class="tm wt"><div class="m">'+lb+'</div><b style="font-size:28px">'+tf(el)+'</b> <span class="m">از '+tf(tot)+'</span><div class="bar"><i style="width:'+Math.round(el/tot*100)+'%"></i></div></div>'}
+function stdMin(i){var d=D[i];return Math.round(d[1]*d[2]/100*0.789/14*60)}
+function ivMs(){return (S.iv>0?S.iv:stdMin(S.dt))*6e4}
+function stats(){var avg=S.sd/n(),h=(Date.now()-S.start)/36e5;return{avg:avg,pace:avg/(h+1),h:h}}
+function lvl(){var s=stats(),a=0,b=0;for(var i=0;i<3;i++){if(s.avg>=lim(i))a=i+1;if(s.pace>=PC[i])b=i+1}return Math.max(a,b)}
+function beep(){try{var c=new (window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=660;g.gain.value=.15;o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.35)}catch(e){}}
+function check(ok){var l=lvl();if(ok&&l>S.lv&&l>0){alertLv=l;alertMsg='';try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}beep()}S.lv=l}
+function newPoem(){var i;do{i=Math.floor(Math.random()*P.length)}while(P[i]===poem);poem=P[i];fresh=true}
+function needWater(){var d=S.sd-S.wsd;return d>=n()*1.8||(d>=n()*.8&&Date.now()-S.last>=12e5)}
+function push(d,r){S.st.push({d:d,r:r,pn:S.next,pl:S.last,pr:S.lr||0});S.sd+=d;S.rounds+=r;S.last=Date.now()}
+function fmt(ms){var m=Math.ceil(ms/6e4);return m>=60?fa(Math.floor(m/60))+':'+fa(('0'+(m%60)).slice(-2)):fa(m)+' دقیقه'}
+var A={
+ c:function(v){var o=S||setup,k=v[0];o[k]=Math.max(0,Math.min(30,o[k]+(v[1]==='+'?1:-1)));if(o.f+o.m+o.u<1)o[k]=1;if(S){check(false);save()}},
+ vibe:function(v){(S||setup).vibe=+v;mood=+v;if(S)save()},
+ tone:function(v){(S||setup).tone=v;if(S)save()},
+ dt:function(v){if(S){S.dt=+v;save()}else setup.dt=+v},
+ iv:function(v){var o=S||setup;o.iv=+v;if(S){if(S.lr)S.next=S.lr+ivMs();save()}},
+ ivs:function(v){var o=S||setup,dt=S?S.dt:(o.dt==null?1:o.dt),cur=o.iv>0?o.iv:stdMin(dt);o.iv=Math.max(15,Math.min(180,cur+(v==='+'?5:-5)));if(S){if(S.lr)S.next=S.lr+ivMs();save()}},
+ go:function(){var o=setup;S={f:o.f,m:o.m,u:o.u,vibe:o.vibe,tone:o.tone,dt:o.dt==null?1:o.dt,iv:o.iv||0,start:Date.now(),sd:0,rounds:0,last:0,next:0,lv:0,wsd:0,wt:Date.now(),st:[]};mood=S.vibe;save()},
+ round:function(){var e=S.next&&Date.now()<S.next,d=sdp();push(d*n(),1);S.lr=Date.now();S.next=Date.now()+ivMs();newPoem();check(true);if(e){alertLv=Math.max(alertLv,1);alertMsg=alertLv===1?'early':''}save()},
+ extra:function(){push(sdp(),0);newPoem();check(true);save()},
+ undo:function(){var x=S.st.pop();if(x){S.sd-=x.d;S.rounds-=x.r;S.next=x.pn;S.last=x.pl;S.lr=x.pr;check(false);save()}},
+ ck:function(v){var d=CK[v][2];if(d>0){push(d,0);newPoem();check(true)}else{S.wsd=S.sd;S.wt=Date.now()}save()},
+ water:function(){S.wsd=S.sd;S.wt=Date.now();save()},
+ ok:function(){alertLv=0;alertMsg=''},
+ tab:function(v){tab=v},
+ spm:function(v){SP.m=+v;saveSP()},
+ spx:function(){SP={name:'',phone:'',m:0};saveSP()},
+ mood:function(v){mood=+v;pick=null},
+ pick:function(){var a=MU[mood][1];pick=a[Math.floor(Math.random()*a.length)]},
+ letter:function(){letter=LET[Math.floor(Math.random()*LET.length)]},
+ pen:function(){pen=PEN[Math.floor(Math.random()*PEN.length)]},
+ reset:function(){if(!arm){arm=true;return}arm=false;S=null;poem=null;alertLv=0;try{localStorage.removeItem(KEY)}catch(e){}}
+};
+function mlink(x){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(x+' بهترین آهنگ‌ها')}
+function opts(list,cur,act,f){return list.map(function(x,i){return '<button class="opt'+(cur===i?' on':'')+'" data-a="'+act+'" data-v="'+i+'"><b>'+f(x)[0]+'</b><span class="m">'+f(x)[1]+'</span></button>'}).join('')}
+function tones(cur){return Object.keys(T).map(function(k){return '<button class="opt'+(cur===k?' on':'')+'" data-a="tone" data-v="'+k+'"><b>'+T[k].n+'</b><span class="m">'+T[k].d+'</span></button>'}).join('')}
+function stp(o,k,l){return '<div class="mini"><span>'+l+'</span><button data-a="c" data-v="'+k+'-" aria-label="کمتر">−</button><b>'+fa(o[k])+'</b><button data-a="c" data-v="'+k+'+" aria-label="بیشتر">+</button></div>'}
+function counts(o){return stp(o,'f','خانم‌ها')+stp(o,'m','آقایان')+stp(o,'u','ترجیح می‌دهم نگویم')}
+function pegSvg(i,w){var d=D[i],k=i<3?0:(i===3?1:2),f=Math.min(1,d[1]/[60,300,400][k]),c=['var(--g)','var(--ac)','#e0a526'][k],P=['M12 14H48L44 70H16Z','M16 8H44C44 30 38 46 30 46C22 46 16 30 16 8Z','M14 10H44L41 72H17Z'][k],y=[70-f*52,48-f*30,72-f*58][k],s='<svg viewBox="0 0 60 80" width="'+w+'" aria-hidden="true"><defs><clipPath id="c'+i+'"><path d="'+P+'"/></clipPath></defs><rect x="0" y="'+y+'" width="60" height="75" clip-path="url(#c'+i+')" fill="'+c+'"/><path d="'+P+'" fill="none" stroke="var(--m)" stroke-width="3" stroke-linejoin="round"/>';if(k===1)s+='<path d="M30 46V70M19 72H41" stroke="var(--m)" stroke-width="3" stroke-linecap="round"/>';return s+'</svg>'}
+function dtChips(cur){var d=D[cur];return '<div class="row" style="flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px">'+D.map(function(x,i){return '<button class="dtb'+(cur===i?' on':'')+'" data-a="dt" data-v="'+i+'">'+pegSvg(i,44)+'<span>'+x[0]+'</span></button>'}).join('')+'</div><div class="card" style="display:flex;gap:16px;align-items:center">'+pegSvg(cur,64)+'<div><b>'+d[0]+'</b><p class="m">'+fa(d[1])+' میلی‌لیتر، '+fa(d[2])+'٪ الکل<br>حدود '+fa(d[1]*d[2]/100*0.789/14)+' واحد استاندارد</p></div></div>'}
+function ivBox(o,dt){var sm=stdMin(dt),cur=o.iv>0?o.iv:sm,low=o.iv>0&&o.iv<sm;
+ return '<p class="m">پیشنهاد استاندارد: حدود '+fa(sm)+' دقیقه برای این نوشیدنی (یک واحد در ساعت). فرهنگ نوشیدن از جایی به جای دیگر فرق می‌کند؛ فاصله را خودتان انتخاب کنید. سقف‌ها و هشدار سرعت با انتخاب شما عوض نمی‌شوند.</p>'
+ +'<div class="row">'+[[0,'استاندارد'],[30,'۳۰ دقیقه'],[45,'۴۵ دقیقه'],[60,'۶۰ دقیقه'],[90,'۹۰ دقیقه']].map(function(x){return '<button class="chip'+((o.iv>0?o.iv===x[0]:x[0]===0)?' on':'')+'" data-a="iv" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</div>'
+ +'<div class="card"><div class="mini" style="padding:0"><span>دلخواه (دقیقه)</span><button data-a="ivs" data-v="-" aria-label="کمتر">−</button><b>'+fa(cur)+'</b><button data-a="ivs" data-v="+" aria-label="بیشتر">+</button></div></div>'
+ +(low?'<p class="m" style="color:var(--l2)">کوتاه‌تر از فاصلهٔ استاندارد است؛ هشدار سرعت زودتر می‌آید.</p>':'')}
+var SM=['سلام. امشب مهمونی‌ام و دارم می‌نوشم. اگه تا چند ساعت دیگه خبری ازم نشد، یه زنگ بزن.','میشه بیای دنبالم؟ نباید رانندگی کنم.','نیاز به کمک دارم. لطفاً زود تماس بگیر.'];
+function saveSP(){try{localStorage.setItem('saqi_sp',JSON.stringify(SP))}catch(e){}}
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function spNum(){return SP.phone.replace(/[^\d+]/g,'')}
+function spBtns(){var nm=esc(SP.name||'آدم امن');return '<a class="big" href="tel:'+spNum()+'">تماس با '+nm+'</a><a class="big" href="sms:'+spNum()+'?&body='+encodeURIComponent(SM[SP.m])+'">ارسال پیام آماده به '+nm+'</a>'}
+function vSafe(){return '<h1 style="font-size:32px">آدم امن</h1><p class="m">یک نفر قابل‌اعتماد که اگر لازم شد با یک لمس خبرش کنی. نام و شماره فقط روی همین گوشی می‌ماند و جای دیگری فرستاده نمی‌شود.</p>'
+ +'<div class="card"><input data-k="name" value="'+esc(SP.name)+'" placeholder="نام (مثلاً مامان، علی)" aria-label="نام"><input data-k="phone" type="tel" dir="ltr" value="'+esc(SP.phone)+'" placeholder="09xx xxx xxxx" aria-label="شماره"></div>'
+ +'<h2>پیام آماده</h2>'+SM.map(function(x,i){return '<button class="opt'+(SP.m===i?' on':'')+'" data-a="spm" data-v="'+i+'">'+x+'</button>'}).join('')
+ +(SP.phone?'<div style="margin-top:14px">'+spBtns()+'</div><button class="ghost" data-a="spx">پاک کردن آدم امن</button>':'<p class="m">بعد از وارد کردن شماره، دکمه‌های تماس و پیام اینجا فعال می‌شوند. در هشدار شدید هم خودکار نشان داده می‌شوند.</p>')
+ +'<div class="card"><b>وضعیت اورژانسی</b><p class="m">اگر کسی بیهوش شد و بیدار نمی‌شود، نفسش کند یا نامنظم است، تشنج کرد یا مدام استفراغ می‌کند: فوراً با اورژانس (۱۱۵) تماس بگیرید. منتظر بهتر شدنش نمانید.</p><a class="big" style="background:var(--l3);color:#fff" href="tel:115">تماس با ۱۱۵</a></div>'}
+var NOTE='<p class="note">این برنامه فقط چیزی را که ثبت می‌کنید می‌شمارد و میزان الکل خون را نمی‌سنجد. عددها تقریبی‌اند و وزن، غذا و دارو نتیجه را عوض می‌کند. بعد از نوشیدن رانندگی نکنید.</p>';
+function vSetup(){var o=setup;return '<h1>ساقی</h1><p class="m">مدیریت نوشیدن و حفظ حال مجلس: می‌شمارد، فاصله پیشنهاد می‌دهد، آب یادآوری می‌کند و هشدار می‌دهد.</p>'
+ +'<h2>امشب چند نفرید؟</h2><p class="m">جنسیت اختیاری است و فقط برای تنظیم دقیق‌تر هشدارها در همین گوشی استفاده می‌شود. اگر نگویید، سقف محافظه‌کارانه‌تر می‌گیریم.</p><div class="card">'+counts(o)+'</div>'+(o.f+o.m+o.u===1?'<p class="m">تنها هستی؟ ساقی متن و هشدارها را برای نوشیدن تنها تنظیم می‌کند.</p>':'')+''
+ +'<h2>فاز جمع</h2><p class="m">روی موسیقی و بازی اثر دارد، نه روی سقف هشدار.</p>'+opts(V,o.vibe,'vibe',function(x){return x})
+ +'<h2>لحن ساقی</h2>'+tones(o.tone)
+ +'<h2>نوشیدنی اصلی</h2>'+dtChips(o.dt==null?1:o.dt)+'<h2>فاصله بین دورها</h2>'+ivBox(o,o.dt==null?1:o.dt)
+ +'<div style="height:22px"></div><button class="big" data-a="go">شروع مجلس</button>'+NOTE}
+function glass(p,c){var y=88-p*78;return '<svg viewBox="0 0 120 140" role="img" aria-label="سطح جام"><defs><clipPath id="b"><path d="M28 10H92C92 58 78 88 60 88C42 88 28 58 28 10Z"/></clipPath></defs>'
+ +'<rect x="0" y="'+y+'" width="120" height="90" clip-path="url(#b)" style="fill:var('+c+');transition:y .6s"/>'
+ +'<path d="M28 10H92C92 58 78 88 60 88C42 88 28 58 28 10Z" fill="none" stroke="var(--m)" stroke-width="3"/>'
+ +'<rect x="57" y="88" width="6" height="38" rx="3" fill="var(--m)"/><ellipse cx="60" cy="130" rx="28" ry="6" fill="var(--m)"/></svg>'}
+function vNight(){
+ var s=stats(),l=lvl(),L=LV[l],t=tt(),now=Date.now(),p=Math.min(1,s.avg/lim(2)),min=Math.floor(s.h*60),
+ el=min<60?fa(min)+' دقیقه':fa(Math.floor(min/60))+':'+fa(('0'+(min%60)).slice(-2)),m='';
+ for(var i=0;i<4;i++)m+='<i style="'+(i<=l?'background:var('+LV[i].c+')':'')+'"></i>';
+ var tm='<div id="tm">'+tmHTML()+'</div>';
+ var pm=poem?'<div class="poem'+(fresh?' new':'')+'"><div>'+poem[0]+'</div><div>'+poem[1]+'</div><small>'+poem[2]+'</small></div>':'<div class="poem"><small>با اولین دور، شعر ساقی می‌آید.</small></div>';
+ fresh=false;
+ return '<div style="--lc:var('+L.c+')"><div class="gl">'+glass(p,L.c)+'</div>'+tm
+ +'<p class="m" style="text-align:center;margin:4px 0 0">فاصله: '+fa(Math.round(ivMs()/6e4))+' دقیقه '+(S.iv>0?'(استاندارد '+fa(stdMin(S.dt))+')':'(استاندارد)')+'</p>'+'<div class="meter">'+m+'</div><div class="lvl">'+L.n+(l?' — '+t.l[l]:'')+'</div>'
+ +(needWater()?'<div class="water"><p>'+t.water+'</p><button data-a="water">آب خوردیم</button></div>':'')
+ +'<div class="card">'+pm+'</div>'
+ +'<button class="big" style="margin-top:14px" data-a="round">'+(n()===1?'یه پیک زدم':'یه دور زدیم')+'<small>'+(n()===1?'':'هر نفر ')+'یک '+D[S.dt][0]+'</small></button>'
+ +'<div class="sub">'+(n()===1?'':'<button data-a="extra">یک نفر اضافه زد</button>')+'<button data-a="undo">اشتباه شد</button></div>'
+ +'<div class="card"><div class="stats"><div><b>'+fa(S.rounds)+'</b><span class="m">دور</span></div><div><b>'+fa(s.avg)+'</b><span class="m">واحد هر نفر</span></div><div><b>'+el+'</b><span class="m">از شروع</span></div></div></div>'
+ +'<h2>تنظیمات مجلس</h2><div class="card">'+counts(S)+'</div>'
+ +'<h2>نوشیدنی اصلی</h2>'+dtChips(S.dt)+'<h2>فاصله بین دورها</h2>'+ivBox(S,S.dt)
+ +'<h2>لحن ساقی</h2><div class="row">'+Object.keys(T).map(function(k){return '<button class="chip'+(S.tone===k?' on':'')+'" data-a="tone" data-v="'+k+'">'+T[k].n+'</button>'}).join('')+'</div>'
+ +'<h2>فاز جمع</h2><div class="row">'+V.map(function(x,i){return '<button class="chip'+(S.vibe===i?' on':'')+'" data-a="vibe" data-v="'+i+'">'+x[0]+'</button>'}).join('')+'</div>'
+ +'<div style="margin-top:14px"><button class="ghost" data-a="reset">'+(arm?'مطمئنی؟ دوباره بزن تا پاک شود':'پایان مجلس و شروع دوباره')+'</button></div>'+NOTE+'</div>'}
+function vCk(){return '<h1 style="font-size:32px">کوکتل و میکس</h1><p class="m">عدد هر کارت، واحد استاندارد تقریبی یک نفر است. میکس‌ها شیرین‌اند و مزهٔ الکل را می‌پوشانند؛ پس بشمارید.</p>'
+ +CK.map(function(c,i){return '<div class="card ck"><div><b>'+c[0]+'</b> <span class="tag">'+(c[2]?fa(c[2])+' واحد':'بدون الکل')+'</span><p class="m">'+c[1]+'</p></div>'+(S?'<button data-a="ck" data-v="'+i+'">'+(c[2]?'ثبت برای یک نفر':'آب‌وار خوردیم')+'</button>':'')+'</div>'}).join('')
+ +'<p class="note">نوشیدنی بدون الکل بین دورها فاصله‌گذار خوبی است و حال مجلس را نگه می‌دارد. «آب‌وار خوردیم» یادآوری آب را هم صفر می‌کند.</p>'}
+function vGames(){
+ return '<h1 style="font-size:32px">بازی</h1><p class="m">بازی‌ها عمداً بدون جریمهٔ نوشیدنی‌اند؛ چون سرعت را بالا می‌برند.</p>'
+ +'<div class="card" style="text-align:center"><div class="rnd">'+(letter||'؟')+'</div><button class="chip" data-a="letter">حرف شروع مشاعره</button></div>'
+ +'<div class="card" style="text-align:center"><p style="min-height:34px;font-weight:600">'+(pen||'جریمهٔ غیرالکلی')+'</p><button class="chip" data-a="pen">جریمه بده</button></div>'
+ +GM.map(function(g){return '<div class="card"><b>'+g[0]+'</b><p class="m">'+g[1]+'</p></div>'}).join('')}
+function vMusic(){
+ if(!pick)A.pick();return '<h1 style="font-size:32px">موسیقی</h1><div class="row" style="margin-top:10px">'
+ +MU.map(function(x,i){return '<button class="chip'+(mood===i?' on':'')+'" data-a="mood" data-v="'+i+'">'+x[0]+'</button>'}).join('')+'</div>'
+ +'<button class="big" style="margin-top:16px;min-height:60px;font-size:19px" data-a="pick">یکی دیگر پیشنهاد بده</button>'
+ +(pick?'<div class="card"><p class="m">پیشنهاد ساقی:</p><a class="link" style="font-size:22px;font-weight:800;border:0" href="'+mlink(pick)+'" target="_blank" rel="noopener">'+pick+'<span>جست‌وجو</span></a></div>':'')
+ +'<div class="card">'+MU[mood][1].map(function(a){return '<a class="link" href="'+mlink(a)+'" target="_blank" rel="noopener">'+a+'<span>جست‌وجو در یوتیوب</span></a>'}).join('')+'</div>'}
+function render(){
+ var h='';
+ if(false)h='';
+ else{
+  var TB=[['night','مجلس',S?vNight:vSetup],['ck','کوکتل',vCk],['game','بازی',vGames],['music','موزیک',vMusic],['safe','آدم امن',vSafe]];
+  h=TB.filter(function(x){return x[0]===tab})[0][2]()
+   +'<nav class="tabs">'+TB.map(function(x){return '<button class="'+(tab===x[0]?'on':'')+'" data-a="tab" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav>';
+  if(alertLv){var t=tt();h+='<div class="ov" role="alertdialog" style="--lc:var('+LV[alertLv].c+')"><h2>'+LV[alertLv].n+'</h2><p>'+(alertMsg==='early'?'فاصلهٔ استاندارد هنوز تمام نشده. دور بعد را کمی دیرتر بزنید.':t.l[alertLv])+'</p>'+(alertLv<3?'<p>به‌جای دور بعد: سکنجبین سودا یا اسپریتز سبک (تب کوکتل).</p>':'')+(alertLv>=(n()===1?2:3)&&SP.phone?spBtns():'')+'<p>'+(n()===1?'مجموع تو':'میانگین هر نفر')+' '+fa(stats().avg)+' واحد استاندارد</p><button data-a="ok">باشه، حواسم هست</button></div>'}
+ }
+ $('#app').innerHTML=h;
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;if(b.dataset.a!=='reset')arm=false;A[b.dataset.a](b.dataset.v);render()});
+setInterval(function(){if(S){var l=lvl();if(l<S.lv){S.lv=l;save()}if(!alertLv&&!(document.activeElement&&document.activeElement.tagName==='INPUT'))render()}},30000);
+/* v3 */
+var HM=[['stay','همین‌جا می‌مانیم','رانندگی لازم نیست'],['driver','راننده‌ی هوشیار داریم','او نمی‌نوشد و در شمارش نیست'],['taxi','تاکسی اینترنتی','اسنپ یا تپسی'],['unk','هنوز مشخص نیست','بعداً تصمیم می‌گیریم']],G={f:'خانم',m:'آقا',u:'نگفته'};
+T.classic.l[3]='بس است امشب. ساقی جام‌ها را برمی‌چیند.‹ رانندگی نکنید.›';
+T.playful.l[3]='قرمز! ساقی رسماً اعتصاب کرد. پیک‌ها تعطیل.‹ رانندگی هم ممنوع.›';
+T.mixed.l[3]='توقف. دیگر ننوشید‹ و هیچ‌کس رانندگی نکند›.';
+TS.classic.l[3]='بس است امشب. جام را کنار بگذار و آدم امنت را در جریان بگذار.‹ رانندگی نکن.›';
+TS.mixed.l[3]='توقف. ننوش، آدم امنت را در جریان بگذار‹ و رانندگی نکن›.';
+var alertWho='',SPL={l:[],sel:0,m:0,dn:'',dp:''};
+try{var q0=JSON.parse(localStorage.getItem('saqi_spl'));if(q0){SPL.l=q0.l||[];SPL.sel=q0.sel||0;SPL.m=q0.m||0}}catch(e){}
+if(!SPL.l.length&&SP.phone)SPL.l.push({n:SP.name||'آدم امن',p:SP.phone});
+SPL.m=SPL.m||SP.m||0;
+function saveSPL(){try{localStorage.setItem('saqi_spl',JSON.stringify({l:SPL.l,sel:SPL.sel,m:SPL.m}))}catch(e){}}
+function prim(){return SPL.l[SPL.sel]||SPL.l[0]}
+function pnum(c){return c.p.replace(/[^\d+]/g,'')}
+function smsU(c){return 'sms:'+pnum(c)+'?&body='+encodeURIComponent(SM[SPL.m])}
+function spBtns(){var c=prim();if(!c)return '';var nm=esc(c.n);return '<a class="big" href="tel:'+pnum(c)+'">تماس با '+nm+'</a><a class="big" href="'+smsU(c)+'">ارسال پیام آماده به '+nm+'</a>'}
+function taxiLinks(c){return '<a class="'+c+'" href="https://snapp.ir" target="_blank" rel="noopener">اسنپ</a><a class="'+c+'" href="https://tapsi.ir" target="_blank" rel="noopener">تپسی</a>'}
+function effAbv(o,i){return o.abvU?60:(o.abv>0?o.abv:D[i][2])}
+function sdp(){return D[S.dt][1]*effAbv(S,S.dt)/100*0.789/14}
+function stdMin(i){return Math.round(D[i][1]*effAbv(S||setup,i)/100*0.789/14*60)}
+function lvText(l){var x=tt().l[l];return x.replace(/‹([^›]*)›/g,S.home==='stay'?'':'$1')}
+function plv(p){var h=(Date.now()-S.start)/36e5,k=p.g==='m'?M:F,a=0,b=0;for(var i=0;i<3;i++){if(p.sd>=k[i])a=i+1;if(p.sd/(h+1)>=PC[i])b=i+1}return Math.max(a,b)}
+function lvl(){if(S.nm&&S.pp.length)return Math.max.apply(null,S.pp.map(plv));var s=stats(),a=0,b=0;for(var i=0;i<3;i++){if(s.avg>=lim(i))a=i+1;if(s.pace>=PC[i])b=i+1}return Math.max(a,b)}
+function topName(){var b=null,m=-1;S.pp.forEach(function(p){var l=plv(p);if(l>m){m=l;b=p}});return b?b.n:''}
+function check(ok){var l=lvl();if(ok&&l>S.lv&&l>0){alertLv=l;alertMsg='';alertWho=S.nm?topName():'';try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}beep()}S.lv=l}
+function syncP(){['f','m','u'].forEach(function(k){var c=S.pp.filter(function(p){return p.g===k});while(c.length>S[k]){S.pp.splice(S.pp.lastIndexOf(c.pop()),1)}while(c.length<S[k]){var q={n:'نفر '+fa(S.pp.length+1),g:k,sd:0,lr:0,nx:0};S.pp.push(q);c.push(q)}})}
+function ptxt(p,now){if(!p.lr||!p.nx)return 'آماده';var el=now-p.lr,tot=p.nx-p.lr;return el>=tot?'نوبتش رسیده':tf(el)+' از '+tf(tot)}
+function ppct(p,now){if(!p.lr||!p.nx)return 0;return Math.min(100,Math.round((now-p.lr)/(p.nx-p.lr)*100))}
+function personsHTML(){var now=Date.now();return '<h2>افراد</h2>'+S.pp.map(function(p,i){var l=plv(p);return '<div class="card" style="--lc:var('+LV[l].c+')"><div class="pr"><input class="nm" data-p="'+i+'" value="'+esc(p.n)+'" aria-label="نام"><span class="m">'+G[p.g]+'</span><b style="color:var(--lc)">'+fa(p.sd)+' واحد</b></div><div class="m" id="pt'+i+'">'+ptxt(p,now)+'</div><div class="bar"><i id="pb'+i+'" style="width:'+ppct(p,now)+'%"></i></div><button class="chip" style="margin-top:8px" data-a="pk" data-v="'+i+'">پیک زد</button></div>'}).join('')}
+function homeBox(o){return '<h2>بعد از مجلس چطور برمی‌گردید؟</h2><p class="m">اگر همین‌جا می‌مانید، هیچ هشدار رانندگی نمی‌بینید.</p>'+opts(HM,HM.map(function(x){return x[0]}).indexOf(o.home||'unk'),'home',function(x){return [x[1],x[2]]})}
+function homeCard(l){var h=S.home;if(h==='driver')return '<div class="card"><p class="m" style="margin:0">راننده‌ی هوشیار دارید: او نمی‌نوشد و در شمارش نیست.</p></div>';if(h==='taxi')return '<div class="card"><b>برگشت با تاکسی</b><div class="row" style="margin-top:8px">'+taxiLinks('chip')+'</div></div>';if(h==='unk'&&l>=1)return '<div class="card"><b>راه برگشت هنوز مشخص نیست</b><p class="m">همین الان تصمیم بگیرید: همین‌جا بمانید، راننده‌ی هوشیار معلوم کنید یا تاکسی بگیرید (تنظیمات مجلس).</p><div class="row">'+taxiLinks('chip')+'</div></div>';return ''}
+function abvBox(o){var i=o.dt==null?1:o.dt,v=effAbv(o,i);return '<h2>درصد الکل</h2><div class="card"><b id="abvv">'+fa(v)+'٪</b><input type="range" data-s="abv" min="3" max="80" step="1" value="'+(o.abv>0?o.abv:D[i][2])+'"'+(o.abvU?' disabled':'')+' aria-label="درصد الکل"><button class="chip'+(o.abvU?' on':'')+'" data-a="abvu">نمی‌دانم (۶۰٪ فرض کن)</button><p class="m">برای مشروب خانگی یا ناشناس، درصد معمولاً بالاتر از برچسب رسمی است. این گزینه عمداً محافظه‌کارانه است تا کم‌شمار نشود.</p></div>'}
+function dtChips(cur){var o=S||setup,d=D[cur],v=effAbv(o,cur);return '<div class="row" style="flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px">'+D.map(function(x,i){return '<button class="dtb'+(cur===i?' on':'')+'" data-a="dt" data-v="'+i+'">'+pegSvg(i,44)+'<span>'+x[0]+'</span></button>'}).join('')+'</div><div class="card" style="display:flex;gap:16px;align-items:center">'+pegSvg(cur,64)+'<div><b>'+d[0]+'</b><p class="m">'+fa(d[1])+' میلی‌لیتر، '+fa(v)+'٪ الکل<br>حدود '+fa(d[1]*v/100*0.789/14)+' واحد استاندارد</p></div></div>'}
+A.c=function(v){var o=S||setup,k=v[0];o[k]=Math.max(0,Math.min(30,o[k]+(v[1]==='+'?1:-1)));if(o.f+o.m+o.u<1)o[k]=1;if(S){if(S.nm)syncP();check(false);save()}};
+A.nm=function(){var o=S||setup;o.nm=!o.nm;if(S){if(S.nm)syncP();save()}};
+A.home=function(v){(S||setup).home=HM[+v][0];if(S)save()};
+A.abvu=function(){var o=S||setup;o.abvU=!o.abvU;if(S)save()};
+A.dt=function(v){var o=S||setup;o.dt=+v;o.abv=0;if(S)save()};
+A.go=function(){var o=setup;S={f:o.f,m:o.m,u:o.u,vibe:o.vibe,tone:o.tone,dt:o.dt==null?1:o.dt,iv:o.iv||0,abv:o.abv||0,abvU:!!o.abvU,home:o.home||'unk',nm:!!o.nm,pp:[],start:Date.now(),sd:0,rounds:0,last:0,next:0,lv:0,wsd:0,wt:Date.now(),st:[]};if(S.nm)syncP();mood=S.vibe;save()};
+A.round=function(){var now=Date.now(),e=S.next&&now<S.next,d=sdp(),sn=S.nm?S.pp.map(function(p){return [p.lr,p.nx]}):null;S.st.push({d:d*n(),r:1,pn:S.next,pl:S.last,pr:S.lr||0,sn:sn});S.sd+=d*n();S.rounds++;S.last=now;S.lr=now;S.next=now+ivMs();if(S.nm)S.pp.forEach(function(p){p.sd+=d;p.lr=now;p.nx=now+ivMs()});newPoem();check(true);if(e){alertLv=Math.max(alertLv,1);alertMsg=alertLv===1?'early':'';alertWho=''}save()};
+A.pk=function(v){var p=S.pp[+v],d=sdp(),now=Date.now(),e=p.nx&&now<p.nx;S.st.push({d:d,r:0,pn:S.next,pl:S.last,pr:S.lr||0,w:+v,wl:p.lr,wn:p.nx});p.sd+=d;p.lr=now;p.nx=now+ivMs();S.sd+=d;S.last=now;newPoem();check(true);if(e){alertLv=Math.max(alertLv,1);alertMsg=alertLv===1?'early':'';alertWho=p.n}save()};
+A.ckp=function(v){var a=v.split(':'),d=CK[+a[0]][2],p=S.pp[+a[1]],now=Date.now();if(!p||!(d>0))return;S.st.push({d:d,r:0,pn:S.next,pl:S.last,pr:S.lr||0,w:+a[1],wl:p.lr,wn:p.nx});p.sd+=d;p.lr=now;p.nx=now+ivMs();S.sd+=d;S.last=now;newPoem();check(true);save()};
+A.undo=function(){var x=S.st.pop();if(!x)return;S.sd-=x.d;S.rounds-=x.r;S.next=x.pn;S.last=x.pl;S.lr=x.pr;if(S.nm){if(x.w!=null){var p=S.pp[x.w];if(p){p.sd-=x.d;p.lr=x.wl;p.nx=x.wn}}else if(x.sn){var dd=x.d/Math.max(1,x.sn.length);S.pp.forEach(function(p,i){if(x.sn[i]){p.sd-=dd;p.lr=x.sn[i][0];p.nx=x.sn[i][1]}})}}check(false);save()};
+A.spm=function(v){SPL.m=+v;saveSPL()};
+A.spadd=function(){var p=SPL.dp.replace(/[^\d+]/g,'');if(p.length<5||SPL.l.length>=8)return;SPL.l.push({n:SPL.dn.trim()||'آدم امن',p:SPL.dp.trim()});SPL.dn='';SPL.dp='';saveSPL()};
+A.spdel=function(v){SPL.l.splice(+v,1);if(SPL.sel>=SPL.l.length)SPL.sel=0;saveSPL()};
+A.spsel=function(v){SPL.sel=+v;saveSPL()};
+function vSafe(){return '<h1 style="font-size:32px">آدم امن</h1><p class="m">چند نفر قابل‌اعتماد را ذخیره کن تا اگر لازم شد با یک لمس خبرشان کنی. لیست فقط روی همین گوشی می‌ماند و جای دیگری فرستاده نمی‌شود. آدم «اصلی» در هشدارها نشان داده می‌شود.</p>'
+ +SPL.l.map(function(c,i){return '<div class="card"><div class="pr"><b>'+esc(c.n)+'</b><button class="chip'+(SPL.sel===i?' on':'')+'" data-a="spsel" data-v="'+i+'">'+(SPL.sel===i?'اصلی':'انتخاب به‌عنوان اصلی')+'</button></div><p class="m" dir="ltr" style="text-align:right">'+esc(c.p)+'</p><div class="row"><a class="chip" href="tel:'+pnum(c)+'">تماس</a><a class="chip" href="'+smsU(c)+'">پیام</a><button class="chip" data-a="spdel" data-v="'+i+'">حذف</button></div></div>'}).join('')
+ +'<h2>افزودن به لیست</h2><div class="card"><input data-d="dn" value="'+esc(SPL.dn)+'" placeholder="نام (مثلاً مامان، علی)" aria-label="نام"><input data-d="dp" type="tel" dir="ltr" value="'+esc(SPL.dp)+'" placeholder="09xx xxx xxxx" aria-label="شماره"><button class="big" style="min-height:56px;font-size:18px;margin-top:8px" data-a="spadd">افزودن</button></div>'
+ +'<h2>پیام آماده</h2>'+SM.map(function(x,i){return '<button class="opt'+(SPL.m===i?' on':'')+'" data-a="spm" data-v="'+i+'">'+x+'</button>'}).join('')
+ +'<div class="card"><b>وضعیت اورژانسی</b><p class="m">اگر کسی بیهوش شد و بیدار نمی‌شود، نفسش کند یا نامنظم است، تشنج کرد یا مدام استفراغ می‌کند: فوراً با اورژانس (۱۱۵) تماس بگیرید. منتظر بهتر شدنش نمانید.</p><a class="big" style="background:var(--l3);color:#fff" href="tel:115">تماس با ۱۱۵</a></div>'}
+function vCk(){return '<h1 style="font-size:32px">کوکتل و میکس</h1><p class="m">عدد هر کارت، واحد استاندارد تقریبی یک نفر است. میکس‌ها شیرین‌اند و مزهٔ الکل را می‌پوشانند؛ پس بشمارید.</p>'
+ +CK.map(function(c,i){var pl=S&&S.nm&&c[2]>0;return '<div class="card"><div class="ck"><div><b>'+c[0]+'</b> <span class="tag">'+(c[2]?fa(c[2])+' واحد':'بدون الکل')+'</span><p class="m">'+c[1]+'</p></div>'+(S&&!pl?'<button data-a="ck" data-v="'+i+'">'+(c[2]?'ثبت برای یک نفر':'آب‌وار خوردیم')+'</button>':'')+'</div>'+(pl?'<p class="m" style="margin:8px 0 0">ثبت برای:</p><div class="row">'+S.pp.map(function(q,j){return '<button class="chip" data-a="ckp" data-v="'+i+':'+j+'">'+esc(q.n)+'</button>'}).join('')+'</div>':'')+'</div>'}).join('')
+ +'<p class="note">نوشیدنی بدون الکل بین دورها فاصله‌گذار خوبی است و حال مجلس را نگه می‌دارد. «آب‌وار خوردیم» یادآوری آب را هم صفر می‌کند.</p>'}
+function vSetup(){var o=setup,dt=o.dt==null?1:o.dt;return '<h1>ساقی</h1><p class="m">مدیریت نوشیدن و حفظ حال مجلس: می‌شمارد، فاصله پیشنهاد می‌دهد، آب یادآوری می‌کند و هشدار می‌دهد.</p>'
+ +'<h2>امشب چند نفرید؟</h2><p class="m">فقط کسانی را بشمارید که می‌نوشند. جنسیت اختیاری است و فقط برای تنظیم دقیق‌تر هشدار در همین گوشی استفاده می‌شود؛ اگر نگویید، سقف محافظه‌کارانه‌تر می‌گیریم.</p><div class="card">'+counts(o)+'</div>'
+ +(o.f+o.m+o.u===1?'<p class="m">تنها هستی؟ ساقی متن و هشدارها را برای نوشیدن تنها تنظیم می‌کند.</p>':'')
+ +'<button class="chip'+(o.nm?' on':'')+'" style="margin-top:10px" data-a="nm">ثبت جداگانه هر نفر (اسم‌ها)</button><p class="m">هر نفر شمارنده و تایمر خودش را دارد و هشدار به اسم می‌آید. تپ بیشتری لازم است ولی دقیق‌تر است؛ اسامی را بعد از شروع می‌شود عوض کرد.</p>'
+ +'<h2>فاز جمع</h2><p class="m">روی موسیقی و بازی اثر دارد، نه روی سقف هشدار.</p>'+opts(V,o.vibe,'vibe',function(x){return x})
+ +'<h2>لحن ساقی</h2>'+tones(o.tone)
+ +homeBox(o)
+ +'<h2>نوشیدنی اصلی</h2>'+dtChips(dt)+abvBox(o)+'<h2>فاصله بین دورها</h2>'+ivBox(o,dt)
+ +'<div style="height:22px"></div><button class="big" data-a="go">شروع مجلس</button>'+NOTE}
+function vNight(){
+ var s=stats(),l=lvl(),L=LV[l],t=tt(),now=Date.now(),p=S.nm&&S.pp.length?Math.min(1,Math.max.apply(null,S.pp.map(function(q){return q.sd/(q.g==='m'?M:F)[2]}))):Math.min(1,s.avg/lim(2)),min=Math.floor(s.h*60),
+ el=min<60?fa(min)+' دقیقه':fa(Math.floor(min/60))+':'+fa(('0'+(min%60)).slice(-2)),m='';
+ for(var i=0;i<4;i++)m+='<i style="'+(i<=l?'background:var('+LV[i].c+')':'')+'"></i>';
+ var pm=poem?'<div class="poem'+(fresh?' new':'')+'"><div>'+poem[0]+'</div><div>'+poem[1]+'</div><small>'+poem[2]+'</small></div>':'<div class="poem"><small>با اولین دور، شعر ساقی می‌آید.</small></div>';
+ fresh=false;
+ return '<div style="--lc:var('+L.c+')"><div class="gl">'+glass(p,L.c)+'</div><div id="tm">'+tmHTML()+'</div>'
+ +'<p class="m" style="text-align:center;margin:4px 0 0">فاصله: '+fa(Math.round(ivMs()/6e4))+' دقیقه '+(S.iv>0?'(استاندارد '+fa(stdMin(S.dt))+')':'(استاندارد)')+'</p>'
+ +'<div class="meter">'+m+'</div><div class="lvl">'+L.n+(l?' — '+lvText(l):'')+'</div>'
+ +homeCard(l)
+ +(needWater()?'<div class="water"><p>'+t.water+'</p><button data-a="water">آب خوردیم</button></div>':'')
+ +'<div class="card">'+pm+'</div>'
+ +'<button class="big" style="margin-top:14px" data-a="round">'+(n()===1?'یه پیک زدم':'یه دور زدیم')+'<small>'+(n()===1?'':'هر نفر ')+'یک '+D[S.dt][0]+'</small></button>'
+ +'<div class="sub">'+((n()===1||S.nm)?'':'<button data-a="extra">یک نفر اضافه زد</button>')+'<button data-a="undo">اشتباه شد</button></div>'
+ +'<div class="card"><div class="stats"><div><b>'+fa(S.rounds)+'</b><span class="m">دور</span></div><div><b>'+fa(s.avg)+'</b><span class="m">واحد هر نفر</span></div><div><b>'+el+'</b><span class="m">از شروع</span></div></div></div>'
+ +(S.nm?personsHTML():'')
+ +'<h2>تنظیمات مجلس</h2><div class="card">'+counts(S)+'</div>'
+ +'<button class="chip'+(S.nm?' on':'')+'" style="margin-top:10px" data-a="nm">ثبت جداگانه هر نفر (اسم‌ها)</button>'
+ +homeBox(S)
+ +'<h2>نوشیدنی اصلی</h2>'+dtChips(S.dt)+abvBox(S)+'<h2>فاصله بین دورها</h2>'+ivBox(S,S.dt)
+ +'<h2>لحن ساقی</h2><div class="row">'+Object.keys(T).map(function(k){return '<button class="chip'+(S.tone===k?' on':'')+'" data-a="tone" data-v="'+k+'">'+T[k].n+'</button>'}).join('')+'</div>'
+ +'<h2>فاز جمع</h2><div class="row">'+V.map(function(x,i){return '<button class="chip'+(S.vibe===i?' on':'')+'" data-a="vibe" data-v="'+i+'">'+x[0]+'</button>'}).join('')+'</div>'
+ +'<div style="margin-top:14px"><button class="ghost" data-a="reset">'+(arm?'مطمئنی؟ دوباره بزن تا پاک شود':'پایان مجلس و شروع دوباره')+'</button></div>'+NOTE+'</div>'}
+function render(){var TB=[['night','مجلس',S?vNight:vSetup],['ck','کوکتل',vCk],['game','بازی',vGames],['music','موزیک',vMusic],['safe','آدم امن',vSafe]],
+ h=TB.filter(function(x){return x[0]===tab})[0][2]()+'<nav class="tabs">'+TB.map(function(x){return '<button class="'+(tab===x[0]?'on':'')+'" data-a="tab" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav>';
+ if(S&&alertLv){var hi=alertLv>=(n()===1?2:3),who=alertWho?esc(alertWho)+(alertMsg==='early'?': ':' بیشتر از همه نوشیده. '):'';h+='<div class="ov" role="alertdialog" style="--lc:var('+LV[alertLv].c+')"><h2>'+LV[alertLv].n+'</h2><p>'+who+(alertMsg==='early'?'فاصلهٔ استاندارد هنوز تمام نشده. بعدی را کمی دیرتر بزنید.':lvText(alertLv))+'</p>'+(alertLv<3?'<p>به‌جای نوبت بعد: سکنجبین سودا یا اسپریتز سبک (تب کوکتل).</p>':'')+(hi?spBtns():'')+(hi&&(S.home==='taxi'||S.home==='unk')?taxiLinks('big'):'')+'<p>'+(n()===1?'مجموع تو':'میانگین هر نفر')+' '+fa(stats().avg)+' واحد استاندارد</p><button data-a="ok">باشه، حواسم هست</button></div>'}
+ $('#app').innerHTML=h}
+document.addEventListener('input',function(e){var t=e.target,d=t.dataset||{};if(d.d){SPL[d.d]=t.value}else if(d.p!==undefined&&S){S.pp[+d.p].n=t.value;save()}else if(d.s==='abv'){var o=S||setup;o.abv=+t.value;o.abvU=false;if(S)save();var lb=$('#abvv');if(lb)lb.textContent=fa(o.abv)+'٪'}});
+document.addEventListener('change',function(e){var d=e.target.dataset||{};if(d.s)render()});
+setInterval(function(){if(S&&S.nm&&tab==='night'&&!alertLv){var now=Date.now();S.pp.forEach(function(p,i){var a=$('#pt'+i),b=$('#pb'+i);if(a)a.textContent=ptxt(p,now);if(b)b.style.width=ppct(p,now)+'%'})}},1000);
+/* v3.1 */
+function syncP(){S.pp=S.pp||[];['f','m','u'].forEach(function(k){var c=S.pp.filter(function(p){return p.g===k});while(c.length>S[k]){S.pp.splice(S.pp.lastIndexOf(c.pop()),1)}while(c.length<S[k]){var q={n:'نفر '+fa(S.pp.length+1),g:k,sd:0,lr:0,nx:0};S.pp.push(q);c.push(q)}})}
+if(S){S.pp=S.pp||[];S.home=S.home||'unk';S.abv=S.abv||0;S.nm=!!S.nm;S.st=S.st||[];if(S.nm)syncP()}
+A.nm=function(){var o=S||setup,on=!o.nm;o.nm=on;if(S){if(on){S.st=[];syncP();if(S.sd>0&&S.pp.length)S.pp.forEach(function(p){p.sd=S.sd/S.pp.length})}check(false);save()}};
+T.classic.water='ای یاران، پیش از جام بعد، آبی بر لب بنهید.';T.classic.d='ادب و شعر کلاسیک';
+var baseRender=render;render=function(){baseRender();var w=document.createTreeWalker($('#app'),NodeFilter.SHOW_TEXT),x,a=[];while(x=w.nextNode())a.push(x);a.forEach(function(t){if(t.nodeValue.indexOf('ساقی')>-1&&!(t.parentNode.closest&&t.parentNode.closest('.poem')))t.nodeValue=t.nodeValue.replace(/ساقی/g,'می‌دار')})};
+/* v3.2 */
+function syncO(o){o.pp=o.pp||[];['f','m','u'].forEach(function(k){var c=o.pp.filter(function(p){return p.g===k});while(c.length>o[k]){o.pp.splice(o.pp.lastIndexOf(c.pop()),1)}while(c.length<o[k]){var q={n:'نفر '+fa(o.pp.length+1),g:k,sd:0,lr:0,nx:0};o.pp.push(q);c.push(q)}})}
+function syncP(){syncO(S)}
+function namesEditor(o){if(!o.nm)return '';syncO(o);return '<div class="card"><b>نام افراد</b><p class="m" id="sv">نام‌ها را بنویسید؛ خودکار ذخیره می‌شوند.</p>'+o.pp.map(function(p,i){return '<div class="pr"><input class="nm" data-q="'+i+'" value="'+esc(p.n)+'" placeholder="نام نفر '+fa(i+1)+'" aria-label="نام"><span class="m">'+G[p.g]+'</span></div>'}).join('')+'</div>'}
+var baseSetup=vSetup;vSetup=function(){var h=baseSetup();return h.replace('<h2>فاز جمع</h2>',namesEditor(setup)+'<h2>فاز جمع</h2>')};
+var baseHome=homeBox;homeBox=function(o){return (o===S?namesEditor(S):'')+baseHome(o)};
+var baseGo=A.go;A.go=function(){var sp=setup.nm?JSON.parse(JSON.stringify(setup.pp||[])):[];baseGo();if(S.nm){S.pp=sp;syncO(S)}save()};
+document.addEventListener('input',function(e){var t=e.target,q=t.dataset&&t.dataset.q;if(q===undefined)return;var o=S||setup;if(o.pp&&o.pp[+q]){o.pp[+q].n=t.value;if(S)save();var sv=$('#sv');if(sv)sv.textContent='✓ ذخیره شد'}});
+document.addEventListener('change',function(e){var d=e.target.dataset||{};if(d.q!==undefined||d.p!==undefined)render()});
+render();
+document.addEventListener('input',function(e){var k=e.target.dataset&&e.target.dataset.k;if(k){SP[k]=e.target.value;saveSP()}});
+document.addEventListener('change',function(e){if(e.target.dataset&&e.target.dataset.k)render()});
+setInterval(function(){if(S&&tab==='night'&&!alertLv){var e=$('#tm');if(e)e.innerHTML=tmHTML()}},1000);
+</script>
+<script>if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostname==="localhost")){addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
+</body>
+</html>
