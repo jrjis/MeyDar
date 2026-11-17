@@ -52,6 +52,7 @@ h2{font-size:15px;font-weight:600;color:var(--m);margin:22px 0 8px}
 .pm{display:flex;gap:8px;justify-content:center;margin-top:6px}
 .pm button,.rb{width:48px;height:48px;border-radius:50%;background:var(--bg);font-size:24px}
 .pr{display:flex;gap:10px;align-items:center;justify-content:space-between}
+.gk{flex:0 0 46px;text-align:center}
 .card{background:var(--s);border-radius:22px;padding:16px;margin-top:14px}
 .ip{width:100%;min-height:52px;border-radius:14px;border:2px solid var(--ln);background:var(--bg);color:var(--t);padding:0 14px;font:inherit;margin:5px 0}
 textarea.ip{padding:10px 14px;min-height:80px;resize:none}
@@ -109,6 +110,37 @@ input[type=range]{width:100%;min-height:44px;accent-color:var(--g);border:0;back
 .pills span{background:var(--s);border-radius:99px;padding:4px 14px;font-size:14px}
 .rd{display:grid;place-items:center;text-align:center;margin-top:10px}.rd .gl svg{width:150px}
 .big3{font-size:24px;font-weight:800;min-width:110px;text-align:center}
+.ib{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--s);color:var(--t);text-decoration:none}
+.top{display:flex;justify-content:space-between;align-items:center}
+.tools{display:flex;gap:8px}
+.hz{display:grid;justify-items:center;align-content:center;gap:8px;min-height:42vh;text-align:center}
+.hz.nm{display:flex;flex-direction:row;align-items:center;gap:18px;min-height:0;padding:6px 0;text-align:right}
+.hz.nm .gl svg{width:84px}
+.hz.nm .pill{margin-bottom:6px}
+.hz.nm .tm{font-size:40px;text-align:right}
+.hz.nm .bar{width:100%;margin:6px 0 0}
+.hz .gl svg{width:150px}
+.hz .bar{width:64%;margin:8px auto 0}
+.tm{font-size:52px;font-weight:600;line-height:1.15;letter-spacing:1px;direction:ltr;font-variant-numeric:tabular-nums}
+.po{font-family:"Noto Naskh Arabic",Vazirmatn,serif;font-size:16px;line-height:2;text-align:center;color:var(--m);margin-top:20px;min-height:72px}
+.po small{display:block;font:400 12px Vazirmatn,sans-serif;opacity:.8}
+.po.new{animation:rise .5s ease-out}
+.pl{background:var(--s);border-radius:20px;margin-top:16px;overflow:hidden}
+.pw{display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid var(--ln);min-height:64px}
+.pw:last-child{border:0}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--lc);flex:0 0 auto}
+.pn{flex:1;min-width:0}.pn b{font-weight:600;font-size:16px}.pn small{display:block;color:var(--m);font-size:12px;line-height:1.3}
+.pb{height:3px;background:var(--ln);border-radius:2px;margin-top:4px;overflow:hidden}.pb i{display:block;height:100%;background:var(--lc);transition:width 1s linear}
+.u{color:var(--m);font-size:14px;min-width:30px;text-align:center}
+.pp{width:44px;height:44px;border-radius:50%;background:var(--ac);color:var(--onac);font-size:24px;font-weight:600;flex:0 0 auto}
+.tabs button{display:grid;place-items:center;align-content:center;gap:2px;min-height:58px;font-size:11px}
+.tabs svg{width:22px;height:22px}
+.wl{min-height:calc(100vh - 215px);display:flex;flex-direction:column;justify-content:center}
+.wi2{border-radius:28px;overflow:hidden;position:relative;aspect-ratio:360/280;background:#1d0f2b;margin-top:6px}
+.wi2 svg{width:100%;height:100%;display:block}
+.himg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vs{font-family:"Noto Naskh Arabic",Vazirmatn,serif;font-size:20px;line-height:2.1;text-align:center;margin:8px 0 0}
+@media (prefers-reduced-motion:reduce){.pb i{transition:none}}
 </style>
 </head>
 <body>
@@ -174,13 +206,13 @@ var CK=[
 ['شرلی تمپل','بدون الکل',[['جینجرآل',150,0],['شربت انار',15,0],['آبلیمو',10,0]],'همه را روی یخ بریز و هم بزن.']];
 
 // ---------- وضعیت ----------
-var STEPS=['who','names','vibe','tone','drink','gap','home','safe','ready'];
+var STEPS=['welcome','who','names','vibe','tone','drink','gap','home','safe','ready'];
 var CFG=function(){return {f:2,m:2,u:0,vibe:0,tone:'mixed',dt:1,abv:0,abvU:false,iv:0,home:'unk',nm:false,pp:[]}};
 var setup=Object.assign(CFG(),ld('meydar_cfg')||{});
 var S=ld('meydar_s')||ld('saqi_v2');
 if(S){S.pp=S.pp||[];S.home=S.home||'unk';S.abv=S.abv||0;S.nm=!!S.nm;S.st=S.st||[]}
 var SPL=Object.assign({l:[],sel:0,m:0,cm:[],dn:'',dp:'',dm:''},ld('meydar_safe')||ld('saqi_spl')||{});
-var step=0,edit=null,tab='night',fun=0,mood=0,pick=null,letter=null,pen=null,poem=null,fresh=false,alertLv=0,alertMsg='',alertWho='',arm=false,ckOpen=-1,ckF=0,ckLight=false;
+var endAsk=false,step=ld('meydar_seen')?1:0,edit=null,tab='night',fun=0,mood=0,pick=null,letter=null,pen=null,poem=null,fresh=false,alertLv=0,alertMsg='',alertWho='',arm=false,ckOpen=-1,ckF=0,ckLight=false;
 mood=(S||setup).vibe||0;
 function cfg(){return S||setup}
 function save(){if(S)sv('meydar_s',S);else sv('meydar_cfg',setup)}
@@ -205,7 +237,7 @@ function check(ok){var l=lvl();if(ok&&l>S.lv&&l>0){alertLv=l;alertMsg='';alertWh
 function newPoem(){var i;do{i=Math.floor(Math.random()*P.length)}while(P[i]===poem);poem=P[i];fresh=true}
 function needWater(){var d=S.sd-S.wsd;return d>=n()*1.8||(d>=n()*.8&&Date.now()-S.last>=12e5)}
 function addG(d,r){S.st.push({d:d,r:r,pn:S.next,pl:S.last,pr:S.lr||0});S.sd+=d;S.rounds+=r;S.last=Date.now()}
-function tf(ms){var s=Math.floor(ms/1000),m=Math.floor(s/60);return fa(String(m).padStart(2,'0'))+':'+fa(String(s%60).padStart(2,'0'))}
+function tf(ms){var s=Math.floor(ms/1000),m=Math.floor(s/60);return String(m).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
 function ptxt(p,now){if(!p.lr||!p.nx)return 'آماده';var el=now-p.lr,tot=p.nx-p.lr;return el>=tot?'نوبتش رسیده':tf(el)+' از '+tf(tot)}
 function ppct(p,now){if(!p.lr||!p.nx)return 0;return Math.min(100,Math.round((now-p.lr)/(p.nx-p.lr)*100))}
 function ckSd(c){var s=0;c[2].forEach(function(q){if(typeof q[1]==='number'&&q[2]>0)s+=q[1]*q[2]/100*0.789/14});return s*(ckLight?.5:1)}
@@ -227,7 +259,7 @@ var A={
  ivs:function(v){var o=cfg(),cur=o.iv>0?o.iv:stdMin(o);o.iv=Math.max(15,Math.min(180,cur+(v==='+'?5:-5)));if(S&&S.lr)S.next=S.lr+ivMs(S);save()},
  home:function(v){cfg().home=v;save()},
  next:function(){if(step<STEPS.length-1){step++;window.scrollTo(0,0)}},
- back:function(){if(step>0){step--;window.scrollTo(0,0)}},
+ back:function(){if(step>1){step--;window.scrollTo(0,0)}},
  edit:function(v){edit=v;window.scrollTo(0,0)},
  done:function(){edit=null;window.scrollTo(0,0)},
  go:function(){var o=setup;S={f:o.f,m:o.m,u:o.u,vibe:o.vibe,tone:o.tone,dt:o.dt,abv:o.abv,abvU:o.abvU,iv:o.iv,home:o.home,nm:o.nm,pp:o.nm?JSON.parse(JSON.stringify(o.pp)):[],start:Date.now(),sd:0,rounds:0,last:0,lr:0,next:0,lv:0,wsd:0,wt:Date.now(),st:[]};if(S.nm)syncO(S);mood=S.vibe;tab='night';save();window.scrollTo(0,0)},
@@ -254,16 +286,43 @@ var A={
  spm:function(v){SPL.m=+v;saveSPL()},
  cmadd:function(){var t=SPL.dm.trim();if(!t||SPL.cm.length>=6)return;SPL.cm.push(t.slice(0,160));SPL.dm='';SPL.m=SM.length+SPL.cm.length-1;saveSPL()},
  cmdel:function(v){SPL.cm.splice(+v,1);SPL.m=0;saveSPL()},
- reset:function(){if(!arm){arm=true;return}arm=false;S=null;poem=null;alertLv=0;step=0;edit=null;try{localStorage.removeItem('meydar_s');localStorage.removeItem('saqi_v2')}catch(e){}window.scrollTo(0,0)}
+ start:function(){sv('meydar_seen',1);step=1;window.scrollTo(0,0)},
+ endask:function(){endAsk=true},
+ endno:function(){endAsk=false},
+ endyes:function(){endAsk=false;S=null;poem=null;alertLv=0;step=1;edit=null;tab='night';try{localStorage.removeItem('meydar_s');localStorage.removeItem('saqi_v2')}catch(e){}window.scrollTo(0,0)}
 };
 var ADV={vibe:1,tone:1,home:1},advT=0;
 
+var WIMG='<img class="himg" src="images/welcome.jpg" alt="" onerror="this.remove()">';
+var IC={
+ safe:'<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><circle cx="12" cy="10" r="2"/><path d="M8.5 16c.8-1.6 2-2.4 3.5-2.4s2.7.8 3.5 2.4"/>',
+ end:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+ undo:'<path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/>',
+ glass:'<path d="M7 3h10c0 5-2 8-5 8S7 8 7 3z"/><path d="M12 11v8M8 21h8"/>',
+ ck:'<path d="M4 4h16l-8 9z"/><path d="M12 13v7M8 20h8"/>',
+ fun:'<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
+ set:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>'};
+function ico(k){return '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[k]+'</svg>'}
+// تصویر خوش‌آمد: دورهمی شبانه با چراغ‌های آویزان و نوشیدن به سلامتی
+var SCENE='<svg viewBox="0 0 360 280" role="img" aria-label="دورهمی شبانه: چند دوست دور میز، جام‌ها در هوا"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b0d27"/><stop offset="1" stop-color="#4a2150"/></linearGradient><radialGradient id="gw"><stop offset="0" stop-color="#ffb347" stop-opacity=".55"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient></defs>'
+ +'<rect width="360" height="280" fill="url(#sk)"/><mask id="mn"><rect width="360" height="280" fill="#fff"/><circle cx="309" cy="41" r="15" fill="#000"/></mask><circle cx="300" cy="46" r="17" fill="#f2c166" mask="url(#mn)"/>'
+ +'<path d="M-5 38Q90 92 180 52T365 42" fill="none" stroke="#7d5a8c" stroke-width="1.6"/>'
+ +[[30,64],[75,78],[120,79],[165,62],[210,54],[255,62],[300,56],[340,45]].map(function(b){return '<circle cx="'+b[0]+'" cy="'+b[1]+'" r="11" fill="url(#gw)"/><circle cx="'+b[0]+'" cy="'+b[1]+'" r="3.2" fill="#ffd68a"/>'}).join('')
+ +'<circle cx="180" cy="196" r="62" fill="url(#gw)"/>'
+ +'<g fill="#5b2d66"><circle cx="48" cy="158" r="14"/><rect x="26" y="174" width="44" height="70" rx="22"/></g>'
+ +'<g fill="#7a3b73"><circle cx="112" cy="146" r="14"/><rect x="90" y="162" width="44" height="82" rx="22"/></g>'
+ +'<g fill="#6a3470"><circle cx="248" cy="146" r="14"/><rect x="226" y="162" width="44" height="82" rx="22"/></g>'
+ +'<g fill="#4f2a5e"><circle cx="312" cy="158" r="14"/><rect x="290" y="174" width="44" height="70" rx="22"/></g>'
+ +'<path d="M122 176L166 126M238 176L194 126" stroke="#7a3b73" stroke-width="13" stroke-linecap="round"/>'
+ +'<g stroke="#f2c166" stroke-width="2.4" stroke-linejoin="round" fill="none"><path d="M158 100h18c0 11-4 18-9 18s-9-7-9-18z" fill="#e0485c" fill-opacity=".85"/><path d="M184 100h18c0 11-4 18-9 18s-9-7-9-18z" fill="#e0485c" fill-opacity=".85"/><path d="M167 118v10M193 118v10"/></g>'
+ +'<path d="M180 84v-9M166 88l-5-6M194 88l5-6" stroke="#ffe9b5" stroke-width="2.2" stroke-linecap="round"/>'
+ +'<ellipse cx="180" cy="242" rx="150" ry="22" fill="#2a1634"/><rect x="176" y="212" width="8" height="24" rx="2" fill="#f3e8dc"/><ellipse cx="180" cy="206" rx="4" ry="8" fill="#ffb347"/></svg>';
 // ---------- اجزای نمایش ----------
 function glass(p,c){var y=88-p*78;return '<svg viewBox="0 0 120 140" role="img" aria-label="جام"><defs><clipPath id="gb"><path d="M28 10H92C92 58 78 88 60 88C42 88 28 58 28 10Z"/></clipPath></defs><rect x="0" y="'+y+'" width="120" height="90" clip-path="url(#gb)" style="fill:var('+c+');transition:y .6s"/><path d="M28 10H92C92 58 78 88 60 88C42 88 28 58 28 10Z" fill="none" stroke="var(--m)" stroke-width="3"/><rect x="57" y="88" width="6" height="38" rx="3" fill="var(--m)"/><ellipse cx="60" cy="130" rx="28" ry="6" fill="var(--m)"/></svg>'}
 function pegSvg(i,w){var d=D[i],k=i<3?0:(i===3?1:2),f=Math.min(1,d[1]/[60,300,400][k]),c=['var(--g)','var(--ac)','#e0a526'][k],Pp=['M12 14H48L44 70H16Z','M16 8H44C44 30 38 46 30 46C22 46 16 30 16 8Z','M14 10H44L41 72H17Z'][k],y=[70-f*52,48-f*30,72-f*58][k],s='<svg viewBox="0 0 60 80" width="'+w+'" aria-hidden="true"><defs><clipPath id="c'+i+'"><path d="'+Pp+'"/></clipPath></defs><rect x="0" y="'+y+'" width="60" height="75" clip-path="url(#c'+i+')" fill="'+c+'"/><path d="'+Pp+'" fill="none" stroke="var(--m)" stroke-width="3" stroke-linejoin="round"/>';if(k===1)s+='<path d="M30 46V70M19 72H41" stroke="var(--m)" stroke-width="3" stroke-linecap="round"/>';return s+'</svg>'}
 function choice(a,v,ic,t,sub,on){return '<button class="ch'+(on?' on':'')+'" data-a="'+a+'" data-v="'+v+'"><span class="ic">'+ic+'</span><span><b>'+t+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</span></button>'}
 function col(o,k,l){return '<div class="col"><div class="m">'+l+'</div><b class="num">'+fa(o[k])+'</b><div class="pm"><button data-a="c" data-v="'+k+'-" aria-label="کمتر">−</button><button data-a="c" data-v="'+k+'+" aria-label="بیشتر">+</button></div></div>'}
-function namesBox(o){syncO(o);return '<div class="card">'+o.pp.map(function(p,i){return '<div class="pr"><input class="ip" data-i="p'+i+'" value="'+esc(p.n)+'" placeholder="نام نفر '+fa(i+1)+'" aria-label="نام"><span class="m">'+G[p.g]+'</span></div>'}).join('')+'</div>'}
+function namesBox(o){syncO(o);return '<div class="card">'+o.pp.map(function(p,i){return '<div class="pr"><input class="ip" data-i="p'+i+'" value="'+esc(p.n)+'" placeholder="نام نفر '+fa(i+1)+'" aria-label="نام"><span class="m gk">'+G[p.g]+'</span></div>'}).join('')+'</div>'}
 function safeForm(){return '<div class="card"><input class="ip" data-i="dn" value="'+esc(SPL.dn)+'" placeholder="نام" aria-label="نام"><input class="ip" data-i="dp" type="tel" dir="ltr" value="'+esc(SPL.dp)+'" placeholder="09xx xxx xxxx" aria-label="شماره"><button class="btn sm" data-a="spadd">افزودن</button></div>'}
 function gapText(o){return o.iv>0?fa(o.iv)+' دقیقه':'استاندارد ≈ '+fa(stdMin(o))+' دقیقه'}
 
@@ -286,38 +345,47 @@ function vStep(id,o){
  else if(id==='safe'){t='یک آدم امن؟';s='اختیاری · برای تماس سریع';b=safeForm()+(SPL.l.length?'<div class="row">'+SPL.l.map(function(c){return '<span class="chip on">✓ '+esc(c.n)+'</span>'}).join('')+'</div>':'')}
  return '<h1 class="t">'+t+'</h1>'+(s?'<p class="sb">'+s+'</p>':'')+b;
 }
+function vWelcome(){return '<div class="wl"><div class="wi2">'+WIMG+SCENE+'</div><h1 class="t c" style="margin-top:18px">می‌دار</h1><p class="vs">ای دوست بیا تا غم فردا نخوریم<br>وین یک دم عمر را غنیمت شمریم</p><p class="m c">منسوب به خیام</p></div><div class="wn"><div class="wi"><button class="btn" data-a="start">بزن بریم</button></div></div>'}
 function vWiz(){
- var id=STEPS[step],pg='<div class="pg">'+STEPS.slice(0,-1).map(function(x,i){return '<i class="'+(i<=step?'on':'')+'"></i>'}).join('')+'</div>';
+ var id=STEPS[step];if(id==='welcome')return vWelcome();
+ var pg='<div class="pg">'+STEPS.slice(1,-1).map(function(x,i){return '<i class="'+(i<step?'on':'')+'"></i>'}).join('')+'</div>';
  if(id==='ready'){var o=setup;return pg+'<div class="rd"><div class="gl">'+glass(.62,'--ac')+'</div><h1 class="t">همه‌چیز آماده است</h1></div>'
   +'<div class="pills"><span>'+fa(n(o))+' نفر</span><span>'+D[o.dt][0]+'</span><span>هر '+fa(Math.round(ivMs(o)/6e4))+' دقیقه</span><span>'+HM.filter(function(x){return x[0]===o.home})[0][2]+'</span></div>'
   +'<p class="sb c" style="margin-top:16px">اولین دور را بزنید؛ تایمر از صفر بالا می‌رود.</p>'
   +'<div class="wn"><div class="wi"><button class="btn2" data-a="back">قبلی</button><button class="btn" data-a="go">شروع مجلس</button></div></div>'}
- return pg+vStep(id,setup)+'<div class="wn"><div class="wi">'+(step?'<button class="btn2" data-a="back">قبلی</button>':'')+'<button class="btn" data-a="next">ادامه</button></div></div>';
+ return pg+vStep(id,setup)+'<div class="wn"><div class="wi">'+(step>1?'<button class="btn2" data-a="back">قبلی</button>':'')+'<button class="btn" data-a="next">ادامه</button></div></div>';
 }
 function vEdit(){return '<button class="chip" data-a="done">‹ تنظیمات</button>'+vStep(edit,S)+'<div class="wn"><div class="wi"><button class="btn" data-a="done">تأیید</button></div></div>'}
 
 // ---------- صفحه‌های مجلس ----------
 function tmHTML(){
  var now=Date.now(),lb=n()===1?'پیک بعدی':'دور بعد';
- if(!S.lr||!S.next)return '<div class="tm">'+fa('00')+':'+fa('00')+'</div><div class="m">با اولین دور شروع می‌شود</div>';
+ if(!S.lr||!S.next)return '<div class="tm">00:00</div><div class="m">با اولین دور شروع می‌شود</div>';
  var tot=S.next-S.lr,el=now-S.lr;
  if(el>=tot)return '<div class="tm go">'+tf(el)+'</div><div class="m">زمان '+lb+' رسیده</div><div class="bar"><i style="width:100%"></i></div>';
  return '<div class="tm">'+tf(el)+'</div><div class="m">'+lb+' · از '+tf(tot)+'</div><div class="bar"><i style="width:'+Math.round(el/tot*100)+'%"></i></div>';
 }
-function personsHTML(){var now=Date.now();return '<h2>افراد</h2>'+S.pp.map(function(p,i){var l=plv(p);return '<div class="card" style="--lc:var('+LV[l].c+')"><div class="pr"><b>'+esc(p.n)+'</b><span class="m">'+G[p.g]+'</span><b style="color:var(--lc)">'+fa(p.sd)+' واحد</b></div><div class="m" id="pt'+i+'">'+ptxt(p,now)+'</div><div class="bar"><i id="pb'+i+'" style="width:'+ppct(p,now)+'%"></i></div><button class="chip" style="margin-top:8px" data-a="pk" data-v="'+i+'">پیک زد</button></div>'}).join('')}
-function homeCard(l){var h=S.home;if(h==='taxi')return '<div class="card pr"><b>برگشت با تاکسی</b><span class="row" style="margin:0">'+taxiLinks('chip')+'</span></div>';if(h==='unk'&&l>=1)return '<div class="card"><b>راه برگشت مشخص نیست</b><div class="row">'+taxiLinks('chip')+'</div></div>';return ''}
+function personsHTML(){var now=Date.now();return '<div class="pl">'+S.pp.map(function(p,i){var l=plv(p);return '<div class="pw" style="--lc:var('+LV[l].c+')"><span class="dot"></span><div class="pn"><b>'+esc(p.n)+'</b><small id="pt'+i+'">'+ptxt(p,now)+'</small><div class="pb"><i id="pb'+i+'" style="width:'+ppct(p,now)+'%"></i></div></div><span class="u">'+fa(p.sd)+'</span><button class="pp" data-a="pk" data-v="'+i+'" aria-label="ثبت پیک برای '+esc(p.n)+'">+</button></div>'}).join('')+'</div>'}
 function taxiLinks(c){return '<a class="'+c+'" href="https://snapp.ir" target="_blank" rel="noopener">اسنپ</a><a class="'+c+'" href="https://tapsi.ir" target="_blank" rel="noopener">تپسی</a>'}
+function homeCard(l){var h=S.home;if(h==='taxi')return '<div class="card pr"><b>برگشت با تاکسی</b><span class="row" style="margin:0">'+taxiLinks('chip')+'</span></div>';if(h==='unk'&&l>=1)return '<div class="card"><b>راه برگشت مشخص نیست</b><div class="row">'+taxiLinks('chip')+'</div></div>';return ''}
 function vNight(){
  var s=stats(),l=lvl(),L=LV[l],mn=Math.floor(s.h*60),el=mn<60?fa(mn)+' دقیقه':fa(Math.floor(mn/60))+':'+fa(String(mn%60).padStart(2,'0')),
+  many=S.nm&&n()>1,c=prim(),
   p=S.nm&&S.pp.length?Math.min(1,Math.max.apply(null,S.pp.map(function(q){return q.sd/(q.g==='m'?M:F)[2]}))):Math.min(1,s.avg/lim(S,2)),
-  pm=poem?'<div class="poem'+(fresh?' new':'')+'"><div>'+poem[0]+'</div><div>'+poem[1]+'</div><small>'+poem[2]+'</small></div>':'<div class="poem"><small>با اولین دور، یک بیت شعر می‌آید</small></div>';
+  safeBtn=c?'<a class="ib" href="'+smsU(c)+'" aria-label="ارسال پیام آماده به '+esc(c.n)+'" title="پیام آماده به '+esc(c.n)+'">'+ico('safe')+'</a>':'<button class="ib" data-a="tab" data-v="safe" aria-label="افزودن آدم امن">'+ico('safe')+'</button>',
+  pm=poem?'<div class="po'+(fresh?' new':'')+'">'+poem[0]+'<br>'+poem[1]+'<small>'+poem[2]+'</small></div>':'<div class="po"><small>با اولین دور، یک بیت شعر می‌آید</small></div>';
  fresh=false;
- return '<div style="--lc:var('+L.c+')"><div class="hero"><div class="gl">'+glass(p,L.c)+'</div><div class="hr"><span class="pill">'+L.n+'</span><div id="tm">'+tmHTML()+'</div></div></div>'
-  +'<p class="st">'+fa(S.rounds)+' دور · '+fa(s.avg)+' واحد هر نفر · '+el+'</p>'+(l?'<p class="msg">'+lvText(l)+'</p>':'')
+ return '<div style="--lc:var('+L.c+')"><div class="top"><span class="m">'+el+'</span><span class="tools">'+safeBtn+'<button class="ib" data-a="endask" aria-label="پایان مجلس" title="پایان مجلس">'+ico('end')+'</button></span></div>'
+  +(many?'<div class="hz nm"><div class="gl">'+glass(p,L.c)+'</div><div class="hr"><span class="pill">'+L.n+'</span><div id="tm">'+tmHTML()+'</div></div></div>':'<div class="hz"><span class="pill">'+L.n+'</span><div class="gl">'+glass(p,L.c)+'</div><div id="tm" style="width:100%">'+tmHTML()+'</div></div>')
+  +'<p class="st c">'+fa(S.rounds)+' دور · '+fa(s.avg)+' واحد هر نفر</p>'+(l?'<p class="msg c">'+lvText(l)+'</p>':'')
   +(needWater()?'<div class="water"><span>'+tx().w+'</span><button data-a="water">خوردیم</button></div>':'')
-  +homeCard(l)+'<div class="card">'+pm+'</div>'+(S.nm?personsHTML():'')+'</div>'
-  +'<div class="act"><div class="wi"><button class="btn2" data-a="undo">↶</button>'+((n()===1||S.nm)?'':'<button class="btn2" data-a="extra">+۱ نفر</button>')+'<button class="btn" data-a="round">'+(n()===1?'یه پیک زدم':'یه دور زدیم')+'</button></div></div>';
+  +homeCard(l)+(many?personsHTML()+pm:pm)+'</div>'
+  +'<div class="act"><div class="wi"><button class="ib" style="width:58px;height:58px" data-a="undo" aria-label="اشتباه شد؛ برگردان">'+ico('undo')+'</button>'+((n()===1||S.nm)?'':'<button class="btn2" data-a="extra">+۱ پیک</button>')+'<button class="btn" data-a="round">'+(n()===1?'یه پیک زدم':'یه دور زدیم')+'</button></div></div>';
 }
+function vEnd(){var s=stats(),mn=Math.floor(s.h*60),du=mn<60?fa(mn)+' دقیقه':fa(Math.floor(mn/60))+':'+fa(String(mn%60).padStart(2,'0'));
+ return '<div class="ov" role="alertdialog" style="--lc:var(--l3)"><h2>پایان مجلس؟</h2><p>'+fa(S.rounds)+' دور · '+fa(s.avg)+' واحد هر نفر · '+du+'</p><p>قبل از رفتن یک لیوان آب.</p>'
+  +((S.home==='taxi'||S.home==='unk')?'<div class="row" style="justify-content:center">'+taxiLinks('btn')+'</div>':'')
+  +'<button class="btn" data-a="endyes">بله، پایان</button><button class="btn" style="background:transparent;color:#fff;border:2px solid #fff" data-a="endno">ادامه می‌دهیم</button></div>'}
 function ingLine(q){var v=q[1];if(typeof v==='number'){if(ckLight&&q[2]>0)v=v/2;v=fa(v)+' میلی‌لیتر'}return '<li>'+q[0]+' · '+v+'</li>'}
 function vCk(){
  var items=CK.map(function(c,i){return [c,i]}).filter(function(x){return ckF===0||(ckF===1&&ckAlc(x[0]))||(ckF===2&&!ckAlc(x[0]))});
@@ -352,10 +420,9 @@ function vSettings(){
  var o=S,sum={who:[o.f?fa(o.f)+' خانم':'',o.m?fa(o.m)+' آقا':'',o.u?fa(o.u)+' نگفته':''].filter(Boolean).join(' · '),names:o.nm?'جداگانه':'گروهی',vibe:V[o.vibe][1],tone:TN[o.tone].n,drink:D[o.dt][0]+' · '+fa(effAbv(o,o.dt))+'٪'+(o.abvU?' (نامعلوم)':''),gap:gapText(o),home:HM.filter(function(x){return x[0]===o.home})[0][2]},
   rows=[['who','افراد'],['names','اسم‌ها'],['vibe','حال جمع'],['tone','لحن'],['drink','نوشیدنی'],['gap','فاصله'],['home','برگشت']];
  return '<h1 class="t2">تنظیمات</h1><div class="rows">'+rows.map(function(r){return '<button class="rw" data-a="edit" data-v="'+r[0]+'"><b>'+r[1]+'</b><span>'+sum[r[0]]+' ‹</span></button>'}).join('')+'</div>'
-  +'<div style="margin-top:18px"><button class="chip" data-a="reset">'+(arm?'مطمئنی؟ دوباره بزن':'پایان مجلس و شروع دوباره')+'</button></div>'
   +'<p class="note">این برنامه فقط چیزی را که ثبت می‌کنید می‌شمارد و میزان الکل خون را نمی‌سنجد. عددها تقریبی‌اند. بعد از نوشیدن رانندگی نکنید.</p>';
 }
-function vTabs(){var T=[['night','مجلس'],['ck','کوکتل'],['fun','سرگرمی'],['safe','آدم امن'],['set','تنظیمات']];return '<nav class="tabs">'+T.map(function(x){return '<button class="'+(tab===x[0]?'on':'')+'" data-a="tab" data-v="'+x[0]+'">'+x[1]+'</button>'}).join('')+'</nav>'}
+function vTabs(){var T=[['night','مجلس','glass'],['ck','کوکتل','ck'],['fun','سرگرمی','fun'],['safe','آدم امن','safe'],['set','تنظیمات','set']];return '<nav class="tabs">'+T.map(function(x){return '<button class="'+(tab===x[0]?'on':'')+'" data-a="tab" data-v="'+x[0]+'">'+ico(x[2])+'<span>'+x[1]+'</span></button>'}).join('')+'</nav>'}
 function vAlert(){
  var l=alertLv,hi=l>=(n()===1?2:3),who=alertWho?esc(alertWho)+(alertMsg==='early'?': ':' بیشتر از همه نوشیده. '):'',c=prim(),nm=c?esc(c.n):'';
  return '<div class="ov" role="alertdialog" style="--lc:var('+LV[l].c+')"><h2>'+LV[l].n+'</h2><p>'+who+(alertMsg==='early'?'هنوز فاصلهٔ استاندارد تمام نشده.':lvText(l))+'</p>'
@@ -368,7 +435,7 @@ function render(){
  var h;
  if(!S)h=vWiz();
  else if(edit)h=vEdit();
- else{var v={night:vNight,ck:vCk,fun:vFun,safe:vSafe,set:vSettings}[tab];h=v()+vTabs();if(alertLv)h+=vAlert()}
+ else{var v={night:vNight,ck:vCk,fun:vFun,safe:vSafe,set:vSettings}[tab];h=v()+vTabs();if(alertLv)h+=vAlert();if(endAsk)h+=vEnd()}
  $('#app').innerHTML=h;
 }
 
